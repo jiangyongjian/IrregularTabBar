@@ -79,7 +79,7 @@
     
     tabBar.delegate = self;
     
-    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_backgroud"]];;
+    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_background"]];;
     
 //    tabBar.frame = self.tabBar.bounds;
 //    
@@ -105,7 +105,7 @@
     customer.view.backgroundColor = BXGlobalBg;
     
     InsuranceViewController *insurance = [[InsuranceViewController alloc] init];
-    [self addOneChildVC:insurance title:@"上传保单" imageName:@"tabBar_publish_icon" selectedImageName:@"tabBar_publish_icon"];
+    [self addOneChildVC:insurance title:@"上传保单" imageName:@"tab_camera" selectedImageName:@"tab_camera"];
     insurance.view.backgroundColor = BXRandomColor;
     
     DataViewController *compare = [[DataViewController alloc] init];

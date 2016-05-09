@@ -27,7 +27,7 @@
         self.imageView.contentMode = UIViewContentModeCenter;
         
         UIView *bgView = [[UIView alloc] init];
-        bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_iconIrregular"]];
+        bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_Irregular"]];
         [self insertSubview:bgView atIndex:0];
         self.bgView = bgView;
     }
@@ -45,9 +45,9 @@
     self.imageView.width = self.currentImage.size.width;
     self.imageView.height = self.currentImage.size.height;
     self.imageView.x = (self.width - self.imageView.width) / 2;
-    self.imageView.y = self.titleLabel.y - self.imageView.height + 2;
+    self.imageView.y = self.titleLabel.y - self.imageView.height - 1;
     
-    self.bgView.width = 49;
+    self.bgView.width = 43;
     self.bgView.height = self.height;
     self.bgView.x = (self.width - self.bgView.width) / 2;
     self.bgView.y = 0;

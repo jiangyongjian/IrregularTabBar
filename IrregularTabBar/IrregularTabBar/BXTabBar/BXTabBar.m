@@ -118,7 +118,9 @@ static NSInteger const BXTabBarTag = 12000;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    CGFloat pointW = 49;
+    
+    // 这里宽度应该跟突出部分的宽度一样，减少点击反应区域
+    CGFloat pointW = 43;
     CGFloat pointH = 61;
     CGFloat pointX = (BXScreenW - pointW) / 2;
     CGFloat pointY = -12;
