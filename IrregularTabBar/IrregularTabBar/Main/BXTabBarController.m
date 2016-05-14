@@ -17,12 +17,9 @@
 #import "BXTabBar.h"
 
 #define kTabbarHeight 49
-#define  kContentFrame  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-kTabbarHeight)
-#define  kDockFrame CGRectMake(0, self.view.frame.size.height-kTabbarHeight, self.view.frame.size.width, kTabbarHeight)
 
 @interface BXTabBarController ()<UITabBarControllerDelegate, UINavigationControllerDelegate, BXTabBarDelegate>
 
-@property (nonatomic, assign) BOOL jump;
 @property (nonatomic, assign) NSInteger lastSelectIndex;
 @property (nonatomic, strong) UIView *redPoint;
 /** view */
@@ -47,12 +44,7 @@
     [super viewWillAppear:animated];
     self.tabBar.hidden = YES;
     // 把系统的tabBar上的按钮干掉
-    for (UIView *childView in self.tabBar.subviews) {
-        if (![childView isKindOfClass:[BXTabBar class]]) {
-            [childView removeFromSuperview];
-            
-        }
-    }
+    [self.tabBar removeFromSuperview];
 }
 
 
@@ -70,8 +62,6 @@
 #pragma mark - 自定义tabBar
 - (void)setUpTabBar
 {
-    
-    
     BXTabBar *tabBar = [[BXTabBar alloc] init];
     
     // 存储UITabBarItem
@@ -79,11 +69,8 @@
     
     tabBar.delegate = self;
     
-    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_background"]];;
+    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_background"]];
     
-//    tabBar.frame = self.tabBar.bounds;
-//    
-//    [self.tabBar addSubview:tabBar];
     tabBar.frame = self.tabBar.frame;
     [self.view addSubview:tabBar];
     self.mytabbar = tabBar;
@@ -97,19 +84,17 @@
 - (void)addAllChildVc {
     // 添加初始化子控制器 BXHomeViewController
     HomeViewController *home = [[HomeViewController alloc] init];
-    home.view.backgroundColor = BXRandomColor;
-    [self addOneChildVC:home title:@"待办事项" imageName:@"tabBar_icon_schedule_default" selectedImageName:@"tabBar_icon_schedule"];
+    [self addOneChildVC:home title:@"首页" imageName:@"tabBar_icon_schedule_default" selectedImageName:@"tabBar_icon_schedule"];
     
     NewViewController *customer = [[NewViewController alloc] init];
-    [self addOneChildVC:customer title:@"客户管理" imageName:@"tabBar_icon_customer_default" selectedImageName:@"tabBar_icon_customer"];
-    customer.view.backgroundColor = BXGlobalBg;
+    [self addOneChildVC:customer title:@"新闻" imageName:@"tabBar_icon_customer_default" selectedImageName:@"tabBar_icon_customer"];
     
     InsuranceViewController *insurance = [[InsuranceViewController alloc] init];
-    [self addOneChildVC:insurance title:@"上传保单" imageName:@"tab_camera" selectedImageName:@"tab_camera"];
+    [self addOneChildVC:insurance title:@"上传证件" imageName:@"tab_camera" selectedImageName:@"tab_camera"];
     insurance.view.backgroundColor = BXRandomColor;
     
     DataViewController *compare = [[DataViewController alloc] init];
-    [self addOneChildVC:compare title:@"产品对比" imageName:@"tabBar_icon_contrast_default" selectedImageName:@"tabBar_icon_contrast"];
+    [self addOneChildVC:compare title:@"发现" imageName:@"tabBar_icon_contrast_default" selectedImageName:@"tabBar_icon_contrast"];
     compare.view.backgroundColor = BXRandomColor;
     
     ProfileViewController *profile = [[ProfileViewController alloc]init];
@@ -168,32 +153,24 @@
     self.selectedIndex = index;
 }
 
-
-
 #pragma mark navVC代理
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     UIViewController *root = navigationController.viewControllers.firstObject;
+    self.tabBar.hidden = YES;
     if (viewController != root) {
-        //更改导航控制器的高度
-        navigationController.view.frame = self.view.bounds;
         //从HomeViewController移除
         [self.mytabbar removeFromSuperview];
         // 调整tabbar的Y值
         CGRect dockFrame = self.mytabbar.frame;
 
-        if ([root.view isKindOfClass:[UIScrollView class]]) {
+        dockFrame.origin.y = root.view.frame.size.height - kTabbarHeight;
+        if ([root.view isKindOfClass:[UIScrollView class]]) { // 根控制器的view是能滚动
             UIScrollView *scrollview = (UIScrollView *)root.view;
-            dockFrame.origin.y = scrollview.contentOffset.y + root.view.frame.size.height - kTabbarHeight;
-        } else {
-            // dockFrame.origin.y -= kDockHeight;
-
-            dockFrame.origin.y = root.view.frame.size.height - kTabbarHeight;
+            dockFrame.origin.y += scrollview.contentOffset.y;
         }
-        _mytabbar.frame = dockFrame;
-
-        
-        //添加dock到根控制器界面
-        [root.view addSubview:_mytabbar];
+        self.mytabbar.frame = dockFrame;
+        // 添加dock到根控制器界面
+        [root.view addSubview:self.mytabbar];
     }
 }
 
@@ -214,6 +191,5 @@
         [self.view addSubview:_mytabbar];
     }
 }
-
 
 @end
