@@ -23,7 +23,7 @@
 @property (nonatomic, assign) NSInteger lastSelectIndex;
 @property (nonatomic, strong) UIView *redPoint;
 /** view */
-@property (nonatomic, strong) UIView *mytabbar;
+@property (nonatomic, strong) BXTabBar *mytabbar;
 
 @property (nonatomic, strong) id popDelegate;
 /** 保存所有控制器对应按钮的内容（UITabBarItem）*/
@@ -45,6 +45,13 @@
     self.tabBar.hidden = YES;
     // 把系统的tabBar上的按钮干掉
     [self.tabBar removeFromSuperview];
+    // 把系统的tabBar上的按钮干掉
+    for (UIView *childView in self.tabBar.subviews) {
+        if (![childView isKindOfClass:[BXTabBar class]]) {
+            [childView removeFromSuperview];
+            
+        }
+    }
 }
 
 
@@ -150,8 +157,17 @@
 // 监听tabBar上按钮的点击
 - (void)tabBar:(BXTabBar *)tabBar didClickBtn:(NSInteger)index
 {
-    self.selectedIndex = index;
+    [super setSelectedIndex:index];
 }
+
+/**
+ *  让myTabBar选中对应的按钮
+ */
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    // 通过mytabbar的通知处理页面切换
+    self.mytabbar.seletedIndex = selectedIndex;
+}
+
 
 #pragma mark navVC代理
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{

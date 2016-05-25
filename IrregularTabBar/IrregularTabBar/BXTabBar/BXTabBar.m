@@ -86,6 +86,14 @@ static NSInteger const BXTabBarTag = 12000;
     }
 }
 
+/**
+ *  外界设置索引页跟着跳转
+ */
+- (void)setSeletedIndex:(NSInteger)seletedIndex {
+    _seletedIndex = seletedIndex;
+    UIButton *button = [self viewWithTag:(BXTabBarTag + seletedIndex)];
+    [self btnClick:button];
+}
 
 
 - (void)layoutSubviews

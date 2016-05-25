@@ -51,6 +51,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.tabBarController.selectedIndex = 4;
+}
+
 /*
 #pragma mark - Navigation
 
