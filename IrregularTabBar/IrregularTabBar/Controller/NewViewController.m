@@ -14,6 +14,7 @@
 
 @implementation NewViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -22,6 +23,7 @@
     push.backgroundColor = [UIColor redColor];
     [push addTarget:self action:@selector(pushvC)];
     [self.view addSubview:push];
+    self.tabBarItem.badgeValue = @"89";
 }
 
 - (void)pushvC {

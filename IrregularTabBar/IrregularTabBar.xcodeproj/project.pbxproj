@@ -37,6 +37,7 @@
 		E23264FA1CD9A8A300387601 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E23264ED1CD9A8A300387601 /* ProfileViewController.m */; };
 		E23264FB1CD9A8A300387601 /* BXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E23264F01CD9A8A300387601 /* BXNavigationController.m */; };
 		E23264FC1CD9A8A300387601 /* BXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E23264F21CD9A8A300387601 /* BXTabBarController.m */; };
+		E2C3A1A71CFD9BEF00106209 /* BXBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A1A61CFD9BEF00106209 /* BXBadgeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,8 @@
 		E23264F01CD9A8A300387601 /* BXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXNavigationController.m; sourceTree = "<group>"; };
 		E23264F11CD9A8A300387601 /* BXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXTabBarController.h; sourceTree = "<group>"; };
 		E23264F21CD9A8A300387601 /* BXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXTabBarController.m; sourceTree = "<group>"; };
+		E2C3A1A51CFD9BEF00106209 /* BXBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BXBadgeView.h; sourceTree = "<group>"; };
+		E2C3A1A61CFD9BEF00106209 /* BXBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BXBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 				E23264E01CD9A8A300387601 /* BXTabBarBigButton.m */,
 				E23264E11CD9A8A300387601 /* BXTabBarButton.h */,
 				E23264E21CD9A8A300387601 /* BXTabBarButton.m */,
+				E2C3A1A51CFD9BEF00106209 /* BXBadgeView.h */,
+				E2C3A1A61CFD9BEF00106209 /* BXBadgeView.m */,
 			);
 			path = BXTabBar;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				E2150F331CD88051008EA3DD /* Foundation+Log.m in Sources */,
 				E2150F351CD88051008EA3DD /* NSDictionary+Extension.m in Sources */,
 				E2150F341CD88051008EA3DD /* NSDate+Extension.m in Sources */,
+				E2C3A1A71CFD9BEF00106209 /* BXBadgeView.m in Sources */,
 				E2150F3D1CD88051008EA3DD /* UIImage+ScreenShot.m in Sources */,
 				E2150F411CD88051008EA3DD /* UIView+Extension.m in Sources */,
 				E2150F371CD88051008EA3DD /* UIApplication+Extensions.m in Sources */,

@@ -94,6 +94,7 @@
     [self addOneChildVC:home title:@"首页" imageName:@"tabBar_icon_schedule_default" selectedImageName:@"tabBar_icon_schedule"];
     
     NewViewController *customer = [[NewViewController alloc] init];
+    customer.tabBarItem.badgeValue = @"100";
     [self addOneChildVC:customer title:@"新闻" imageName:@"tabBar_icon_customer_default" selectedImageName:@"tabBar_icon_customer"];
     
     InsuranceViewController *insurance = [[InsuranceViewController alloc] init];

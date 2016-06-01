@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BXTabBarButton : UIButton
-
+/** 模型数据 */
+@property (nonatomic, strong) UITabBarItem *item;
 @end

@@ -22,6 +22,7 @@
     push.backgroundColor = [UIColor redColor];
     [push addTarget:self action:@selector(pushvC)];
     [self.view addSubview:push];
+    self.tabBarItem.badgeValue = @"1";
 }
 
 - (void)pushvC {

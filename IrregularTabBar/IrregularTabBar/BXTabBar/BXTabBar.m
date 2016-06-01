@@ -35,6 +35,7 @@ static NSInteger const BXTabBarTag = 12000;
             BXTabBarBigButton *btn = [BXTabBarBigButton buttonWithType:UIButtonTypeCustom];
             
             btn.tag = self.subviews.count + BXTabBarTag;
+            
             // 设置图片
             [btn setImage:item.image forState:UIControlStateNormal];
             [btn setImage:item.selectedImage forState:UIControlStateSelected];
@@ -43,13 +44,14 @@ static NSInteger const BXTabBarTag = 12000;
             [btn setTitle:item.title forState:UIControlStateNormal];
             [btn setTitleColor:BXColor(113, 109, 104) forState:UIControlStateNormal];
             [btn setTitleColor:BXColor(51, 135, 255) forState:UIControlStateSelected];
+
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
             
             [self addSubview:btn];
             self.bigButton = btn;
 
         } else {
-            UIButton *btn = [BXTabBarButton buttonWithType:UIButtonTypeCustom];
+            BXTabBarButton *btn = [BXTabBarButton buttonWithType:UIButtonTypeCustom];
             
             btn.tag = self.subviews.count + BXTabBarTag;
             
@@ -59,6 +61,7 @@ static NSInteger const BXTabBarTag = 12000;
             btn.adjustsImageWhenHighlighted = NO;
             // 设置文字
             [btn setTitle:item.title forState:UIControlStateNormal];
+            btn.item = item;
             [btn setTitleColor:BXColor(113, 109, 104) forState:UIControlStateNormal];
             [btn setTitleColor:BXColor(51, 135, 255) forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
@@ -68,8 +71,19 @@ static NSInteger const BXTabBarTag = 12000;
                 // 默认选中第一个
                 [self btnClick:btn];
             }
+            // 添加观察者
+            [item addObserver:self forKeyPath:@"badgeValue" options:NSKeyValueObservingOptionNew context:(__bridge void * _Nullable)(btn)];
         }
     }
+}
+
+/**
+ *  实现数字的显示
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    BXTabBarButton *btn = (__bridge BXTabBarButton *)(context);
+    UITabBarItem *item = object;
+    btn.item = item;
 }
 
 - (void)btnClick:(UIButton *)button
