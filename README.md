@@ -38,7 +38,7 @@
  
 ## 详解UITabBar结构
 
-![IrregularTabBar](GIF/UITabBar结构.png "IrregularTabBar")
+![IrregularTabBar](GIF/UITabBar结构.jpeg "IrregularTabBar")
 
 # Usage
  `IrregularTabBar` 很简单，就想到与你创建工程，只要修改一下控制器的名字，跟换一下图片就OK了。
