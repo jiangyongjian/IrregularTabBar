@@ -122,7 +122,7 @@ static NSInteger const BXTabBarTag = 12000;
     CGFloat w = [UIScreen mainScreen].bounds.size.width / count;
     
     CGFloat h = self.height;
-    
+#warning 在这里修改位置
     for (int i = 0; i < count; i++) {
         UIButton *btn = self.subviews[i];
         

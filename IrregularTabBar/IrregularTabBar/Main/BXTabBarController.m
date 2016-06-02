@@ -31,6 +31,22 @@
 @end
 
 @implementation BXTabBarController
++ (void)initialize {
+    // 设置tabbarItem的普通文字
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[NSForegroundColorAttributeName] = [[UIColor alloc]initWithRed:113/255.0 green:109/255.0 blue:104/255.0 alpha:1];
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:10];
+    
+    
+    //设置tabBarItem的选中文字颜色
+    NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
+    selectedTextAttrs[NSForegroundColorAttributeName] = BXColor(51, 135, 255);
+    
+    UITabBarItem *item = [UITabBarItem appearance];
+    [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    [item setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
+}
+
 
 - (NSMutableArray *)items {
     if (_items == nil) {
@@ -127,17 +143,6 @@
     // 设置图标
     childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     
-    // 设置tabbarItem的普通文字
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = [[UIColor alloc]initWithRed:113/255.0 green:109/255.0 blue:104/255.0 alpha:1];
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:10];
-    [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    
-    //设置tabBarItem的选中文字颜色
-    NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
-    selectedTextAttrs[NSForegroundColorAttributeName] = BXColor(51, 135, 255);
-    [childVc.tabBarItem setTitleTextAttributes:selectedTextAttrs forState:UIControlStateSelected];
-    
     // 设置选中的图标
     UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
     // 不要渲染
@@ -197,7 +202,7 @@
     BXNavigationController *nav = (BXNavigationController *)navigationController;
     if (viewController == root) {
         // 更改导航控制器view的frame
-        navigationController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - kTabbarHeight);
+//        navigationController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - kTabbarHeight);
         
         navigationController.interactivePopGestureRecognizer.delegate = nav.popDelegate;
         // 让Dock从root上移除

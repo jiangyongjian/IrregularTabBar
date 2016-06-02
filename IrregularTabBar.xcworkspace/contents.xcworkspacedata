@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:IrregularTabBar/IrregularTabBar.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IrregularTabBar2/IrregularTabBar2.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:IrregularTabBar3/IrregularTabBar3.xcodeproj">
+   </FileRef>
+</Workspace>
