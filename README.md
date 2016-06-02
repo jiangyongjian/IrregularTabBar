@@ -9,9 +9,12 @@
 
 
 ### 请大家主要小红点的细节，截图
-![IrregularTabBar](GIF/cut.png "IrregularTabBar")
+
+![IrregularTabBar](GIF/cut.png "IrregularTabBar") 
+
 详细教学，请看IrregularTabBar2工程里面的
 ![IrregularTabBar](GIF/proCut.png "IrregularTabBar")
+
 
 ## 工程结构
 做下说明：请用IrregularTabBar.xcworkspace打开
@@ -24,7 +27,7 @@
 |── IrregularTabBar     #第一个项目，完全自定义tabBar，但跟系统用法一样
         ├── Main        #导航控制器，tabBarController
           
- └── IrregularTabBar2   #第二个项目，自定义继承系统UITabBar跟系统用法一样
+└── IrregularTabBar2   #第二个项目，自定义继承系统UITabBar跟系统用法一样
         ├── Main        #导航控制器，tabBarController 
                
 └── IrregularTabBar3    #第三个项目，不用自定义，完全用系统的
@@ -35,24 +38,7 @@
  
 ## 详解UITabBar结构
 
-|── UITabBar
-    │
-    └── _UITabBarBackgroundView
-    │
-    └── UITabBarButton
-        │
-        ├── UITabBarSwappableImageView
-        │
-        ├── UITabBarButtonLabel
-        │
-        ├──  _UIBadgeView
-        │   	│  	
-        │   	├──   _UIBadgeBackground 
-        │   	│  		 │  	
-        │   	│  		 ├── _image
-        │   	│  		
-        │   	└── UILabel
-        
+![IrregularTabBar](GIF/UITabBar结构.png "IrregularTabBar")
 
 # Usage
  `IrregularTabBar` 很简单，就想到与你创建工程，只要修改一下控制器的名字，跟换一下图片就OK了。
