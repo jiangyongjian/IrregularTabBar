@@ -78,15 +78,17 @@
    
     // 添加所有子控制器
     [self addAllChildVc];
+ 
     // 自定义tabBar
     [self setUpTabBar];
+    // 设置选中一定要在设置完tabBar以后, 默认选中第0个
+    // self.selectedIndex = 0;
 }
 
 #pragma mark - 自定义tabBar
 - (void)setUpTabBar
 {
     BXTabBar *tabBar = [[BXTabBar alloc] init];
-    
     // 存储UITabBarItem
     tabBar.items = self.items;
     

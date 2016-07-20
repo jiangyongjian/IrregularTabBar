@@ -9,6 +9,7 @@
 #import "BXTabBar.h"
 #import "BXTabBarButton.h"
 #import "BXTabBarBigButton.h"
+#import "BXTabBarController.h"
 
 @interface BXTabBar ()
 /**
@@ -18,6 +19,9 @@
 
 /** bigButton */
 @property (nonatomic, weak) BXTabBarBigButton *bigButton;
+
+/** 需要选中第几个 */
+@property (nonatomic, assign) NSUInteger currentSelectedIndex;
 @end
 
 @implementation BXTabBar
@@ -67,7 +71,13 @@ static NSInteger const BXTabBarTag = 12000;
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
             
             [self addSubview:btn];
-            if (self.subviews.count == 1) {
+            // 子控件的个数
+            NSInteger subViewsCount = 1;
+            if (self.seletedIndex) {
+                subViewsCount = self.seletedIndex + 1;
+            }
+            if (self.subviews.count == subViewsCount) {
+                self.currentSelectedIndex = self.subviews.count - 1;
                 // 默认选中第一个
                 [self btnClick:btn];
             }
@@ -85,6 +95,12 @@ static NSInteger const BXTabBarTag = 12000;
     UITabBarItem *item = object;
     btn.item = item;
 }
+
+- (void)setDelegate:(id<BXTabBarDelegate>)delegate{
+    _delegate = delegate;
+    [self btnClick:(BXTabBarButton *)[self viewWithTag:self.currentSelectedIndex + BXTabBarTag]];
+}
+
 
 - (void)btnClick:(UIButton *)button
 {
