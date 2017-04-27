@@ -182,6 +182,7 @@
     UIViewController *root = navigationController.viewControllers.firstObject;
     self.tabBar.hidden = YES;
     if (viewController != root) {
+//        if (navigationController.viewControllers.count > 2) return;
         //从HomeViewController移除
         [self.mytabbar removeFromSuperview];
         // 调整tabbar的Y值

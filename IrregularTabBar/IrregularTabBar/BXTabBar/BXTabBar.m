@@ -87,6 +87,14 @@ static NSInteger const BXTabBarTag = 12000;
     }
 }
 
+- (void)dealloc {
+    for (int i=0; i<self.items.count; i++) {
+        if (i != 2) {
+            [self.items[i] removeObserver:self forKeyPath:@"badgeValue"];
+        }
+    }
+}
+
 /**
  *  实现数字的显示
  */

@@ -35,11 +35,19 @@
 #warning 在多个控制器中需要设置bageView的图片或者位置时，下面代码不能调换顺序
     UIView *badgeView = [UIView ff_firstInView:self.tabBarController.tabBar.subviews[2] clazzName:@"_UIBadgeView"];
     
-    // 查找 _UIBadgeBackground
-    UIView *badgeBackground = [UIView ff_firstInView:badgeView clazzName:@"_UIBadgeBackground"];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
+        UIView *badgeBackgroundUIImageView = [UIView ff_firstInView:badgeView clazzName:@"UIImageView"];
+        UIImageView *cirleUIImageView = (UIImageView *)badgeBackgroundUIImageView;
+        //    cirleUIImageView.contentMode = UIViewContentModeScaleToFill;
+        cirleUIImageView.image = [UIImage resizedImage:@"m_badge"];
+    } else {
+        // 查找 _UIBadgeBackground
+        UIView *badgeBackground = [UIView ff_firstInView:badgeView clazzName:@"_UIBadgeBackground"];
 
-    // 设置背景图片
-    [badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
+        // 设置背景图片
+        [badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
+    }
 }
 
 

@@ -50,25 +50,31 @@
     // 虽然这里打印出来了，但是系统还会调用
     BXLog(@"badgeView2 -- %@", NSStringFromCGRect(badgeView.frame));
     
-    
-    // 查找 _UIBadgeBackground
-//    UIView *badgeBackground = [UIView ff_firstInView:self.tabBarController.tabBar.subviews[4] clazzName:@"_UIBadgeBackground"];
-     UIView *badgeBackground = [UIView ff_firstInView:badgeView clazzName:@"_UIBadgeBackground"];
-    
-    BXLog(@"当前控制器对应的UITabBarButton%@ ---- \n\n\n tabbar上所有的子控件%@ ",self.tabBarController.tabBar.subviews[4], self.tabBarController.tabBar.subviews);
-    
-#warning _UIBadgeBackground很多人想知道这个是怎么出来的，下面这个方法是打印子控件类名
-    [self logSubviewsClass:self.tabBarController.tabBar.subviews[4]];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
+        UIView *badgeBackgroundUIImageView = [UIView ff_firstInView:badgeView clazzName:@"UIImageView"];
+        UIImageView *cirleUIImageView = (UIImageView *)badgeBackgroundUIImageView;
+        //    cirleUIImageView.contentMode = UIViewContentModeScaleToFill;
+        cirleUIImageView.image = [UIImage resizedImage:@"m_badge"];
+    } else {
+        // 查找 _UIBadgeBackground
+    //    UIView *badgeBackground = [UIView ff_firstInView:self.tabBarController.tabBar.subviews[4] clazzName:@"_UIBadgeBackground"];
+         UIView *badgeBackground = [UIView ff_firstInView:badgeView clazzName:@"_UIBadgeBackground"];
+        
+        BXLog(@"当前控制器对应的UITabBarButton%@ ---- \n\n\n tabbar上所有的子控件%@ ",self.tabBarController.tabBar.subviews[4], self.tabBarController.tabBar.subviews);
+        
+    #warning _UIBadgeBackground很多人想知道这个是怎么出来的，下面这个方法是打印子控件类名
+        [self logSubviewsClass:self.tabBarController.tabBar.subviews[4]];
 
-    // 测试内部成员变量列表
-    [badgeBackground ff_ivarsList];
-    
-    BXLog(@"badgeBackground -- %@", NSStringFromCGRect(badgeBackground.frame));
-    
-    // 设置背景图片
-#warning 这里设置图片，你项目需要的图片
-    [badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
-    
+        // 测试内部成员变量列表
+        [badgeBackground ff_ivarsList];
+        
+        BXLog(@"badgeBackground -- %@", NSStringFromCGRect(badgeBackground.frame));
+        
+        // 设置背景图片
+    #warning 这里设置图片，你项目需要的图片
+    //    [badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
+        [badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"UIImageView"];
+    }
 }
 
 /**
