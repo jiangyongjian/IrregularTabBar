@@ -27,7 +27,12 @@
         self.imageView.contentMode = UIViewContentModeCenter;
         
         UIView *bgView = [[UIView alloc] init];
-        bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_Irregular"]];
+        if (iPhoneX) {
+            bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_IrregularX"]];
+        } else {
+            bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_Irregular"]];
+        }
+        
         [self insertSubview:bgView atIndex:0];
         self.bgView = bgView;
     }
@@ -40,6 +45,9 @@
     self.titleLabel.x = 0;
     self.titleLabel.width = self.width;
     self.titleLabel.height = 16;
+    if (@available(iOS 11.0, *)) {
+        self.titleLabel.height -= 1;
+    }
     self.titleLabel.y = self.height - self.titleLabel.height;
     
     self.imageView.width = self.currentImage.size.width;

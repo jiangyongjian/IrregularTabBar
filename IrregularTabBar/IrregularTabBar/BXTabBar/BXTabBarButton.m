@@ -53,6 +53,9 @@
     self.titleLabel.x = 0;
     self.titleLabel.width = self.width;
     self.titleLabel.height = 16;
+    if (@available(iOS 11.0, *)) {
+        self.titleLabel.height -= 1;
+    }
     self.titleLabel.y = self.height - self.titleLabel.height;
     
     // 图片位置

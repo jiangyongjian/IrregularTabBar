@@ -22,6 +22,7 @@
         BXTabBarBigButton *bigButton = [[BXTabBarBigButton alloc] init];
         [bigButton setImage:[UIImage imageNamed:@"摄影机图标_点击前"] forState:UIControlStateNormal];
         [bigButton setImage:[UIImage imageNamed:@"摄影机图标_点击后"] forState:UIControlStateHighlighted];
+        [bigButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [bigButton addTarget:self action:@selector(bigButtonClick) forControlEvents:UIControlEventTouchUpInside];
         self.bigButton = bigButton;
     }
@@ -49,6 +50,7 @@
     CGRect rect = self.bounds;
     CGFloat w = rect.size.width / self.items.count - 1;
     self.bigButton.frame = CGRectInset(rect, 2 * w, 0);
+    self.bigButton.height = 49;
     [self bringSubviewToFront:self.bigButton];
 }
 

@@ -24,6 +24,9 @@
     [push addTarget:self action:@selector(pushvC)];
     [self.view addSubview:push];
     self.tabBarItem.badgeValue = @"89";
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+    }
 }
 
 - (void)pushvC {

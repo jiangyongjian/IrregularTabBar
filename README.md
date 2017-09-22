@@ -33,8 +33,8 @@
 └── IrregularTabBar3    #第三个项目，不用自定义，完全用系统的
         ├── Main        #导航控制器，tabBarController
 
-            
- ```
+ ```  
+  
  
 ## 详解UITabBar结构
 
@@ -59,10 +59,16 @@ self.tabBarItem.badgeValue = @"1";
         
 [badgeView setValue:[NSValue valueWithCGRect:CGRectMake(-100, -100, 40, 18)] forKey:@"frame"];
 
-UIView *badgeBackground = [UIView ff_firstInView:self.tabBarController.tabBar.subviews[4] clazzName:@"_UIBadgeBackground"];
+ if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) { // 注意iOS 10以后系统改变了结构
+        UIView *badgeBackgroundUIImageView = [UIView ff_firstInView:badgeView clazzName:@"UIImageView"];
+        UIImageView *cirleUIImageView = (UIImageView *)badgeBackgroundUIImageView;
+        cirleUIImageView.image = [UIImage resizedImage:@"m_badge"];
+    } else {
 
-[badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
-```
+		UIView *badgeBackground = [UIView ff_firstInView:self.tabBarController.tabBar.subviews[4] clazzName:@"_UIBadgeBackground"];
+		
+		[badgeBackground setValue:[UIImage imageNamed:@"m_badge"] forKey:@"_image"];
+	}```
 IrregularTabBar3 完全使用系统tabBar，用法和上面一样，需要看项目给出的警告.
 
 # 联系我

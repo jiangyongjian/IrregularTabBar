@@ -43,6 +43,10 @@
 #define The_Prompt_Color_Six [[UIColor alloc]initWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
 #define The_Prompt_Color_Three [[UIColor alloc]initWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1]
 
+// 是否为iPhoneX
+#define iPhoneX ([UIScreen mainScreen].bounds.size.height == 812)
+#define BXDangerousAreaH 34
+
 #define The_MainColor BXColor(51, 153, 255)
 #define BXGlobalBg BXColor(242, 242, 242)
 // 自定义log

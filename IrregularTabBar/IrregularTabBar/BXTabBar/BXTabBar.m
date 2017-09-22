@@ -134,18 +134,16 @@ static NSInteger const BXTabBarTag = 12000;
 }
 
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     
     NSUInteger count = self.subviews.count;
-    
-    
+
     CGFloat x = 0;
     CGFloat y = 0;
     CGFloat w = [UIScreen mainScreen].bounds.size.width / count;
     
-    CGFloat h = self.height;
+    CGFloat h = 49;
 #warning 在这里修改位置
     for (int i = 0; i < count; i++) {
         UIButton *btn = self.subviews[i];
@@ -154,11 +152,8 @@ static NSInteger const BXTabBarTag = 12000;
         
         if (i == 2) {
             y = -12;
-            h = self.height + 12;
-        } else {
-            y = 0;
-            h = self.height;
-        }
+            h += 12;
+        } 
         btn.frame = CGRectMake(x, y, w, h);
     }
 }

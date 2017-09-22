@@ -71,8 +71,8 @@
 - (void)setupComposeButton {
     CGRect rect = self.tabBar.bounds;
     CGFloat w = rect.size.width / self.childViewControllers.count - 1;
-    BXLog(@"%f", w);
     self.composeButton.frame = CGRectInset(rect, 2 * w, 0);
+    self.composeButton.height = 49;
 }
 
 #pragma mark - 设置子控制器

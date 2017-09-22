@@ -16,8 +16,7 @@
 
 #import "BXTabBar.h"
 
-#define kTabbarHeight 49
-
+#define kTabbarHeight ([UIScreen mainScreen].bounds.size.height == 812 ? (BXDangerousAreaH + 49) : 49)
 @interface BXTabBarController ()<UITabBarControllerDelegate, UINavigationControllerDelegate, BXTabBarDelegate>
 
 @property (nonatomic, assign) NSInteger lastSelectIndex;
@@ -86,17 +85,20 @@
 }
 
 #pragma mark - 自定义tabBar
-- (void)setUpTabBar
-{
+- (void)setUpTabBar {
     BXTabBar *tabBar = [[BXTabBar alloc] init];
     // 存储UITabBarItem
     tabBar.items = self.items;
     
     tabBar.delegate = self;
     
-    tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_background"]];
-    
-    tabBar.frame = self.tabBar.frame;
+    if (iPhoneX) {
+        tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_backgroundX"]];
+    } else {
+        tabBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tab_background"]];
+    }
+//    tabBar.frame = self.tabBar.frame;
+    tabBar.frame = CGRectMake(0, BXScreenH - kTabbarHeight, BXScreenW, kTabbarHeight);
     [self.view addSubview:tabBar];
     self.mytabbar = tabBar;
 }
@@ -187,7 +189,7 @@
         [self.mytabbar removeFromSuperview];
         // 调整tabbar的Y值
         CGRect dockFrame = self.mytabbar.frame;
-
+        
         dockFrame.origin.y = root.view.frame.size.height - kTabbarHeight;
         if ([root.view isKindOfClass:[UIScrollView class]]) { // 根控制器的view是能滚动
             UIScrollView *scrollview = (UIScrollView *)root.view;
@@ -212,7 +214,8 @@
         [_mytabbar removeFromSuperview];
  
         //_mytabbar添加dock到HomeViewController
-        _mytabbar.frame = self.tabBar.frame;
+//        _mytabbar.frame = self.tabBar.frame;
+        _mytabbar.frame = CGRectMake(0, BXScreenH - kTabbarHeight, BXScreenW, kTabbarHeight);
         [self.view addSubview:_mytabbar];
     }
 }
